@@ -9,6 +9,41 @@
 <body>
     <script>
         console.log("Hello, World!")
+
+        const choice = ["rock", "paper", "scissors"];
+
+        function computerPlay() {
+            return choice[Math.floor(Math.random()*choice.length)];
+        }
+
+        
+        function playRound(computerSelection, playerSelection) {
+            computerSelection = computerPlay().toLowerCase();
+            playerSelection = playerSelection.toLowerCase();
+            if (computerSelection == playerSelection) {
+                let result = "Tie! Try Again.";
+                return result;
+            } if ((computerSelection == "rock" && playerSelection == "scissors")
+                || (computerSelection == "scissors" && playerSelection == "paper")
+                || (computerSelection == "paper" && playerSelection == "rock")) {
+                let result = "You lose! " + computerSelection + " beats " + playerSelection;
+                return result; 
+            } if ((playerSelection == "rock" && computerSelection == "scissors")
+                || (playerSelection == "scissors" && computerSelection == "paper")
+                || (playerSelection == "paper" && computerSelection == "rock")) {
+                let result = "You win! " + playerSelection + " beats " + computerSelection;
+                return result;
+            } else {
+                return "Oops, something went wrong!"
+            };
+        }
+
+        const computerSelection = computerPlay();
+        const playerSelection = "rock";
+
+        console.log(playRound(computerSelection, playerSelection));
+
+
     </script>
 </body>
 </html>
