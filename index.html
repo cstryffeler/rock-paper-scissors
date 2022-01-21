@@ -16,33 +16,84 @@
             return choice[Math.floor(Math.random()*choice.length)];
         }
 
-        
-        function playRound(computerSelection, playerSelection) {
-            computerSelection = computerPlay().toLowerCase();
-            playerSelection = playerSelection.toLowerCase();
-            if (computerSelection == playerSelection) {
-                let result = "Tie! Try Again.";
-                return result;
-            } if ((computerSelection == "rock" && playerSelection == "scissors")
-                || (computerSelection == "scissors" && playerSelection == "paper")
-                || (computerSelection == "paper" && playerSelection == "rock")) {
-                let result = "You lose! " + computerSelection + " beats " + playerSelection;
-                return result; 
-            } if ((playerSelection == "rock" && computerSelection == "scissors")
-                || (playerSelection == "scissors" && computerSelection == "paper")
-                || (playerSelection == "paper" && computerSelection == "rock")) {
-                let result = "You win! " + playerSelection + " beats " + computerSelection;
-                return result;
-            } else {
-                return "Oops, something went wrong!"
+        //for a game function that plays the game five rounds and declares a winner:
+        function game() {
+            let playerScore = 0;
+            let computerScore = 0;
+            let result;
+            //run playRound
+            function playRound(computerSelection, playerSelection) {
+                //create a variable that tallies the winner each time, adding it to the total score
+                computerSelection = computerSelection.toLowerCase();
+                playerSelection = playerSelection.toLowerCase();
+                if (computerSelection == playerSelection) {
+                    let result = "Tie! Try Again." + "\n" +
+                                "The score currently is:" + "\n" + 
+                                "Computer: " + computerScore + "\n" +
+                                "Player: " + playerScore;
+                    return result;
+                } if ((computerSelection == "rock" && playerSelection == "scissors")
+                    || (computerSelection == "scissors" && playerSelection == "paper")
+                    || (computerSelection == "paper" && playerSelection == "rock")) {
+                    computerScore++;
+                    let result = "You lose! " + computerSelection + " beats " + playerSelection + "\n" +
+                                "The score currently is:" + "\n" + 
+                                "Computer: " + computerScore + "\n" +
+                                "Player: " + playerScore;
+                    return result;
+                } if ((playerSelection == "rock" && computerSelection == "scissors")
+                    || (playerSelection == "scissors" && computerSelection == "paper")
+                    || (playerSelection == "paper" && computerSelection == "rock")) {
+                    playerScore++;
+                    let result = "You win! " + playerSelection + " beats " + computerSelection + "\n" +
+                                "The score currently is:" + "\n" + 
+                                "Computer: " + computerScore + "\n" +
+                                "Player: " + playerScore;              
+                    return result;
+                } else {
+                    return "Oops, something went wrong!"
+                };
             };
-        }
+            //repeat process until 5 games have passed
+            for (let i = 0; i < 5; i++) {
+                let computerSelection = computerPlay();
+                //ask for a prompt for the user
+                //take the answer from the user and use it as playerSelection
+                let playerSelection = prompt("Rock, Paper, or Scissors. Type one!");
+                console.log(playRound(computerSelection, playerSelection));
+                };
 
-        const computerSelection = computerPlay();
-        const playerSelection = "rock";
+            //declare the winner by the person who has the greatest score
+            function getFinalScore(playerScore, computerScore) {
+                if (playerScore > computerScore) {
+                    let finalScore = "Congratulations! You won the most games out of five rounds" + "\n" +
+                                    "The final score is:" + "\n" + 
+                                    "Computer: " + computerScore + "\n" +
+                                    "Player: " + playerScore;
+                    return finalScore;    
+                } if (playerScore < computerScore) {
+                    let finalScore = "Oh no, you lost! The computer won the most games out of five rounds" + "\n" +
+                                    "The final score is:" + "\n" + 
+                                    "Computer: " + computerScore + "\n" +
+                                    "Player: " + playerScore;
+                    return finalScore;
+                } if (playerScore == computerScore) {
+                    let finalScore = "What a coincidence! It is a tie." + "\n" +
+                                    "The final score is:" + "\n" + 
+                                    "Computer: " + computerScore + "\n" +
+                                    "Player: " + playerScore;
+                    return finalScore;
+                } else {
+                    "Oops, something went wrong here!"
+                };
+            };
 
-        console.log(playRound(computerSelection, playerSelection));
+            console.log(getFinalScore(playerScore, computerScore));
+        
+        };
 
+        
+game();
 
     </script>
 </body>
