@@ -7,10 +7,14 @@
     <title>Document</title>
 </head>
 <body>
+
+    <p id="output"></p>
+
     <script>
         console.log("Hello, World!")
 
         const choice = ["rock", "paper", "scissors"];
+        let paraText = document.getElementById("output");
 
         function computerPlay() {
             return choice[Math.floor(Math.random()*choice.length)];
@@ -28,27 +32,27 @@
                 playerSelection = playerSelection.toLowerCase();
                 if (computerSelection == playerSelection) {
                     let result = "Tie! Try Again." + "\n" +
-                                "The score currently is:" + "\n" + 
-                                "Computer: " + computerScore + "\n" +
-                                "Player: " + playerScore;
+                                    "The score currently is:" + "\n" + 
+                                    "Computer: " + computerScore + "\n" +
+                                    "Player: " + playerScore;
                     return result;
                 } if ((computerSelection == "rock" && playerSelection == "scissors")
                     || (computerSelection == "scissors" && playerSelection == "paper")
                     || (computerSelection == "paper" && playerSelection == "rock")) {
                     computerScore++;
                     let result = "You lose! " + computerSelection + " beats " + playerSelection + "\n" +
-                                "The score currently is:" + "\n" + 
-                                "Computer: " + computerScore + "\n" +
-                                "Player: " + playerScore;
+                                    "The score currently is:" + "\n" + 
+                                    "Computer: " + computerScore + "\n" +
+                                    "Player: " + playerScore;
                     return result;
                 } if ((playerSelection == "rock" && computerSelection == "scissors")
                     || (playerSelection == "scissors" && computerSelection == "paper")
                     || (playerSelection == "paper" && computerSelection == "rock")) {
                     playerScore++;
                     let result = "You win! " + playerSelection + " beats " + computerSelection + "\n" +
-                                "The score currently is:" + "\n" + 
-                                "Computer: " + computerScore + "\n" +
-                                "Player: " + playerScore;              
+                                    "The score currently is:" + "\n" + 
+                                    "Computer: " + computerScore + "\n" +
+                                    "Player: " + playerScore;              
                     return result;
                 } else {
                     return "Oops, something went wrong!"
@@ -67,21 +71,21 @@
             function getFinalScore(playerScore, computerScore) {
                 if (playerScore > computerScore) {
                     let finalScore = "Congratulations! You won the most games out of five rounds" + "\n" +
-                                    "The final score is:" + "\n" + 
-                                    "Computer: " + computerScore + "\n" +
-                                    "Player: " + playerScore;
+                                        "The final score is:" + "\n" + 
+                                        "Computer: " + computerScore + "\n" +
+                                        "Player: " + playerScore;
                     return finalScore;    
                 } if (playerScore < computerScore) {
                     let finalScore = "Oh no, you lost! The computer won the most games out of five rounds" + "\n" +
-                                    "The final score is:" + "\n" + 
-                                    "Computer: " + computerScore + "\n" +
-                                    "Player: " + playerScore;
+                                        "The final score is:" + "\n" + 
+                                        "Computer: " + computerScore + "\n" +
+                                        "Player: " + playerScore;
                     return finalScore;
                 } if (playerScore == computerScore) {
                     let finalScore = "What a coincidence! It is a tie." + "\n" +
-                                    "The final score is:" + "\n" + 
-                                    "Computer: " + computerScore + "\n" +
-                                    "Player: " + playerScore;
+                                        "The final score is:" + "\n" + 
+                                        "Computer: " + computerScore + "\n" +
+                                        "Player: " + playerScore;
                     return finalScore;
                 } else {
                     "Oops, something went wrong here!"
@@ -89,12 +93,18 @@
             };
 
             console.log(getFinalScore(playerScore, computerScore));
+            paraText.innerText = getFinalScore(playerScore, computerScore)
         
         };
 
         
-game();
+        game();
+
+        
 
     </script>
+
+
+
 </body>
 </html>
